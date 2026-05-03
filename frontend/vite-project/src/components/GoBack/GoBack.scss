@@ -1,0 +1,28 @@
+.go-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+
+  padding: 8px 14px;
+  margin-bottom: 15px;
+
+  background: #ecf0f1;
+  color: #2c3e50;
+
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+
+  font-size: 14px;
+  font-weight: 500;
+
+  transition: all 0.2s ease;
+
+  &:hover {
+    background: #dcdfe1;
+  }
+
+  &:active {
+    transform: scale(0.96);
+  }
+}

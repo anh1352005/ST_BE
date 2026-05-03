@@ -1,0 +1,77 @@
+import React, { useEffect, useState } from "react";
+import { Outlet, NavLink } from "react-router-dom";
+import Header from "../components/Header";
+import thongKeApi from "../api/thongKeApi";
+import "../components/Statistics/Statistics.scss";
+
+function Statistics() {
+  const [summary, setSummary] = useState({
+    totalRev: 0,
+    productCount: 0,
+    branchCount: 0
+  });
+
+  useEffect(() => {
+    const fetchSummary = async () => {
+      try {
+        const [resBranch, resInv] = await Promise.all([
+          thongKeApi.getDoanhThuChiNhanh(),
+          thongKeApi.getTonKho()
+        ]);
+        const bData = resBranch.data || resBranch || [];
+        const iData = resInv.data || resInv || [];
+        
+        setSummary({
+          totalRev: bData.reduce((sum, item) => sum + (item.doanhThu || 0), 0),
+          productCount: iData.length,
+          branchCount: bData.length
+        });
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    fetchSummary();
+  }, []);
+
+  const formatVND = (val) => new Intl.NumberFormat("vi-VN").format(val || 0) + "đ";
+
+  return (
+    <>
+      <Header />
+      <div className="stats-container">
+        <div className="stats-cards">
+          <div className="card">
+            <p>Tổng doanh thu hệ thống</p>
+            <h3>{formatVND(summary.totalRev)}</h3>
+          </div>
+          <div className="card">
+            <p>Số loại sản phẩm</p>
+            <h3>{summary.productCount}</h3>
+          </div>
+          <div className="card">
+            <p>Chi nhánh hoạt động</p>
+            <h3>{summary.branchCount}</h3>
+          </div>
+        </div>
+
+        <div className="stats-tabs">
+          <NavLink to="/statistics/branch" className={({ isActive }) => isActive ? "active" : ""}>
+            <button>Chi nhánh</button>
+          </NavLink>
+          <NavLink to="/statistics/time" className={({ isActive }) => isActive ? "active" : ""}>
+            <button>Thời gian</button>
+          </NavLink>
+          <NavLink to="/statistics/stock" className={({ isActive }) => isActive ? "active" : ""}>
+            <button>Tồn kho</button>
+          </NavLink>
+        </div>
+
+        <div className="stats-content">
+          <Outlet context={{ formatVND }} />
+        </div>
+      </div>
+    </>
+  );
+}
+
+export default Statistics;

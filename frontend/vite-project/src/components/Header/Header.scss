@@ -1,0 +1,120 @@
+.header {
+  background: #1e293b;
+  color: #fff;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  z-index: 1000;
+
+  /* TOP */
+  &-top {
+    display: flex;
+    align-items: center;
+    padding: 12px 20px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+
+    &__logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+
+      a {
+        display: flex;
+        align-items: center;
+        text-decoration: none;
+        color: #fff;
+      }
+
+      &--img {
+        width: 40px;
+        height: 40px;
+        object-fit: cover;
+        border-radius: 8px;
+        background: #334155;
+      }
+
+      &--title {
+        font-size: 18px;
+        font-weight: 600;
+      }
+    }
+  }
+
+  /* MENU */
+  &-main {
+    display: flex;
+    gap: 10px;
+    padding: 10px 20px;
+    overflow-x: auto;
+
+    a {
+      text-decoration: none;
+    }
+
+    &__item {
+      padding: 8px 14px;
+      border-radius: 8px;
+      font-size: 14px;
+      color: #e5e7eb;
+      cursor: pointer;
+      transition: 0.2s;
+
+      &:hover {
+        background: #334155;
+        color: #fff;
+      }
+    }
+  }
+}
+
+/* ACTIVE LINK (nâng cấp thêm) */
+.header-main a.active .header-main__item {
+  background: #3b82f6;
+  color: #fff;
+}
+
+.header {
+
+  &__btn {
+    margin-left: auto;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+
+    a {
+      text-decoration: none;
+    }
+
+    &--item {
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-size: 14px;
+      cursor: pointer;
+      border: none;
+      transition: all 0.2s ease;
+
+      /* mặc định (Đăng nhập) */
+      background: transparent;
+      color: #e5e7eb;
+      border: 1px solid #475569;
+
+      &:hover {
+        background: #334155;
+        color: #fff;
+      }
+    }
+
+    /* Đăng ký (nút thứ 2) */
+    a:last-child &--item {
+      background: #3b82f6;
+      color: #fff;
+      border: none;
+
+      &:hover {
+        background: #2563eb;
+      }
+    }
+  }
+}

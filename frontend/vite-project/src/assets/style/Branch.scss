@@ -1,0 +1,49 @@
+.branch-page {
+  margin-top: 130px;
+  display: flex;
+  min-height: 100vh;
+  background: #f4f6f9;
+
+  &__sidebar {
+    width: 15vw;
+    background: #2c3e50;
+    padding: 20px 0;
+    color: #fff;
+    position: fixed;
+    left: 0;
+    top: 130px;
+    height: 100vh;
+
+    .menu {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+
+      a {
+        text-decoration: none;
+        color: inherit;
+      }
+
+      &__item {
+        padding: 12px 20px;
+        cursor: pointer;
+        transition: 0.2s;
+
+        &:hover {
+          background: #34495e;
+        }
+      }
+
+      .active .menu__item {
+        background: #3498db;
+        font-weight: 500;
+      }
+    }
+  }
+
+  &__content {
+    margin-left: 15vw;
+    background: #f8fafc;
+    min-height: 100vh;
+  }
+}
